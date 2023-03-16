@@ -4,14 +4,14 @@ import time
 import urllib3
 import json
 
+# Initilize global variables
 access_key = "c74d99b49b38a853cb1ff4cea5ef83f8eeadf0ddc37849711b730d276c79ba54"
 secret_key = "46cbceaa6599b79ee87ffc26ffd59609056db49af35cfe6b62508f6642f4f8e1"
-SCAN_ID = "15"
+SCAN_ID = ""
 
 # Disable SSL warnings
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-#url = f"https://localhost:8834/scans/{scan_id}/export"
 url = f"https://localhost:8834/"
 headers = {
     "x-apikeys": f"accessKey={access_key};secretKey={secret_key}",
@@ -61,7 +61,6 @@ print(EXPORT_ID)
 
 donwload_url = "https://localhost:8834//scans/15/export/591316015/download"
 
-SCAN_ID = "15"
 EXPORT_STATUS_URL = f"https://localhost:8834/scans/{SCAN_ID}/export/{EXPORT_ID}/status"
 EXPORT_DOWNLOAD_URL = f"https://localhost:8834/scans/{SCAN_ID}/export/{EXPORT_ID}/download"
 CSV_FILENAME = "export.csv"
