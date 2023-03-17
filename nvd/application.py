@@ -3,16 +3,24 @@ import requests
 import pandas as pd
 import datetime
 import variables
+import os
 
 # Get start date
+
 tmpStartDate = dateutil.parser.isoparse(variables.start_date)
+end_date = dateutil.parser.isoparse(variables.end_date)
+if tmpStartDate > end_date:
+    print("Please provide end date later than start date")
+    exit()
 # Initialize end date to +120 days from start date
 tmpEndDate = tmpStartDate + datetime.timedelta(days=120)
 
-# If given end date is less tha 120 days, correct the end date by assigning the provided
-if tmpEndDate > dateutil.parser.isoparse(variables.end_date):
-    tmpEndDate = variables.end_date
-
+# If given end date is less than 120 days, correct the end date by assigning the provided
+if tmpEndDate > end_date:
+    tmpEndDate = end_date
+    print(f"Data will be generated for {tmpStartDate} to {end_date}")
+else:
+    print(f"Data will be generated for {tmpStartDate} to {end_date}")
 
 print("Fetching data in bacthes of 120 days")
 data_set = []
@@ -60,6 +68,9 @@ while tmpStartDate < dateutil.parser.isoparse(variables.end_date):
 
 
 # Add to CSV file
+file_path = os.getcwd()
+file_name= "CVE_data"
 df = pd.json_normalize(data_set)
-df.to_csv("CVE_data_new.csv", index=False)
-print("End of process")
+df.to_csv(f"{file_name}.csv", index=False)
+
+print(f"{file_name} saved at : {file_path}")

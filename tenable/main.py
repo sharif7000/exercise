@@ -35,9 +35,9 @@ for scan in scan_response["scans"]:
 GENERATE_EXPORT_URL = f"{scan_url}/{SCAN_ID}/export"
 print("Calling URL ", GENERATE_EXPORT_URL)
 
-json_data = json.dumps(Constants.body)
+#json_data = json.dumps(Constants.data)
 response = requests.post(GENERATE_EXPORT_URL, headers=Constants.headers,
-                         data=json_data, verify=False).json()
+                         json=Constants.json, verify=False).json()
 EXPORT_ID = response["file"]
 
 EXPORT_STATUS_URL = f"{Constants.BASE_URL}/scans/{SCAN_ID}/export/{EXPORT_ID}/status"
@@ -70,5 +70,5 @@ file_name_timestamp = f"{Constants.CSV_FILENAME}_{SCAN_ID}_{timestamp_str}.csv"
 with open(file_name_timestamp, "wb") as f:
     f.write(file_response.content)
     abs_csv_path = os.path.abspath(f.name)
-    print(f"File saved as {abs_csv_path}")
+    print(f"File saved at {abs_csv_path}")
 

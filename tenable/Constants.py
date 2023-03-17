@@ -5,15 +5,18 @@ secret_key = "46cbceaa6599b79ee87ffc26ffd59609056db49af35cfe6b62508f6642f4f8e1"
 BASE_URL = f"https://localhost:8834"
 
 # Body for creating export
-body = {
+json = {
     "format": "csv",
     "template_id": "",
     "reportContents": {
-        "csvColumns": {
-            "id": "true",
-            "cve": "true",
-            "cvss": "true"
-        }
+                    "vulnerabilitySections" :{
+        
+                                        "id": True,
+                                        "cve": True,
+                                        "cvss": True,
+                                        "cvss3_base_score" : True,
+                                        "cvss2_base_score" : True
+                                    }
     }
 }
 
