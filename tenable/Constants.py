@@ -1,5 +1,5 @@
-access_key = "c74d99b49b38a853cb1ff4cea5ef83f8eeadf0ddc37849711b730d276c79ba54"
-secret_key = "46cbceaa6599b79ee87ffc26ffd59609056db49af35cfe6b62508f6642f4f8e1"
+access_key = input("Please provide access_key : ")
+secret_key = input("Please provide secret_key : ")
 
 # Base URL
 BASE_URL = f"https://localhost:8834"
